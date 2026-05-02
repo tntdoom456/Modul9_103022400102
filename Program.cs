@@ -5,7 +5,7 @@ public class Config
 {
     public string? lang { get; set; }
     public string? transfer { get; set; }
-    public string? methiod { get; set; }
+    public string? method { get; set; }
     public string? confirmation { get; set; }
 }
 public class BankTrasnferConfig
@@ -44,9 +44,16 @@ public class BankTrasnferConfig
     public void setDefaultConfig()
     {
         config = new Config();
+
         config.lang = "en";
-        config.transfer = "threshold";
-        config.methiod = "[ “RTO (real-time)”, “SKN”, “RTGS”, “BI FAST” ]";
+
+        Transfer transfers = new Transfer(25000000, 6500, 15000);
+        config.transfer = transfers;
+
+        List<string> methods = new List<string>() { "RTO (real-time)", "SKN", "RTGS", "BI FAST" };
+        config.method = methods[0];
+
+
         config.confirmation = "en";
     }
 }
